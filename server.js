@@ -1,9 +1,10 @@
 var express = require('express');
 var app = express();
 var moment = require('moment');
+var path = require('path');
 
 app.get('/', function(req, res){
-    res.send('hello world');
+    res.sendFile(path.join(__dirname+'/public/index.html'));
 })
 
 app.get('/:time', function(req, res){
@@ -23,6 +24,6 @@ app.get('/:time', function(req, res){
   res.json(response)
 })
 
-var server = app.listen(3000, function(){
+var server = app.listen(process.env.PORT || 3000, function(){
     console.log('App listening on port 3000');
 })
